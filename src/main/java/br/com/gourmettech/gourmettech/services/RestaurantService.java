@@ -18,4 +18,10 @@ public class RestaurantService {
     public List<Restaurant> index(){
         return restaurantRepository.findAll();
     }
+
+
+    public Restaurant create(Restaurant restaurant) {
+        var result = restaurantRepository.save(restaurant);
+        return result;
+    }
 }
