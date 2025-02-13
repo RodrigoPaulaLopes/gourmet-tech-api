@@ -33,7 +33,7 @@ public class RestaurantController {
 
 
     @GetMapping()
-    public ResponseEntity<List<Restaurant>> index() {
+    public ResponseEntity<List<ListRestaurantDTO>> index() {
         return ResponseEntity.ok().body(restaurantService.index());
     }
 

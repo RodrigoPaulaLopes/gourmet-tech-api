@@ -9,6 +9,6 @@ public record ListContactDTO(
         String email) {
 
     public ListContactDTO(Contact contact){
-        this(contact.getEmail(), contact.getPhone());
+        this(contact.getPhone(), contact.getEmail());
     }
 }

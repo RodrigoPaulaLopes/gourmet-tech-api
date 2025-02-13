@@ -17,8 +17,8 @@ public class RestaurantService {
     private RestaurantRepository restaurantRepository;
 
 
-    public List<Restaurant> index(){
-        return restaurantRepository.findAll();
+    public List<ListRestaurantDTO> index(){
+        return restaurantRepository.findAll().stream().map(ListRestaurantDTO::new).toList();
     }
 
 
