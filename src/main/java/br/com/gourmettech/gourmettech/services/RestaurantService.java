@@ -2,6 +2,7 @@ package br.com.gourmettech.gourmettech.services;
 
 import java.util.List;
 
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,13 @@ public class RestaurantService {
         Restaurant entity = new Restaurant(restaurant);
         var result = restaurantRepository.save(entity);
         return new ListRestaurantDTO(result);
+    }
+
+    public ListRestaurantDTO update(String id, RestaurantDTO restaurant) {
+
+        var rest = restaurantRepository.findById(id).get();
+        rest.changeAttr(restaurant);
+        restaurantRepository.save(rest);
+        return new ListRestaurantDTO(rest);
     }
 }

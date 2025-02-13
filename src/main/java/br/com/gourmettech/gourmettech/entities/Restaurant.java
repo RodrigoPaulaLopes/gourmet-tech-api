@@ -39,5 +39,12 @@ public class Restaurant {
         setContact(new Contact(dto.contact()));
     }
 
+    public void changeAttr(RestaurantDTO restaurant) {
+        setAddress(new Address(restaurant.address()));
+        setContact(new Contact(restaurant.contact()));
+        setName(restaurant.name());
+    }
+
+
     
 }

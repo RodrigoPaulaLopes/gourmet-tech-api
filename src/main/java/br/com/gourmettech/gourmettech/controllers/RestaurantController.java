@@ -17,7 +17,9 @@ import br.com.gourmettech.gourmettech.services.RestaurantService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -38,10 +40,15 @@ public class RestaurantController {
     }
 
     @PostMapping()
-    public ResponseEntity<ListRestaurantDTO> postMethodName(@Valid @RequestBody RestaurantDTO restaurant) {
+    public ResponseEntity<ListRestaurantDTO> create(@Valid @RequestBody RestaurantDTO restaurant) {
         var result = restaurantService.create(restaurant);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(result.id()).toUri();
         return ResponseEntity.created(uri).body(result);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<ListRestaurantDTO> update(@Valid @RequestBody RestaurantDTO restaurant, @PathVariable String id) {
+        var result = restaurantService.update(id, restaurant);
+      return ResponseEntity.ok().body(result);
     }
     
 }
