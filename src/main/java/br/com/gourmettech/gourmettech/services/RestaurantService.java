@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.gourmettech.gourmettech.dtos.ListRestaurantDTO;
+import br.com.gourmettech.gourmettech.dtos.RestaurantDTO;
 import br.com.gourmettech.gourmettech.entities.Restaurant;
 import br.com.gourmettech.gourmettech.repositories.RestaurantRepository;
 
@@ -20,8 +22,9 @@ public class RestaurantService {
     }
 
 
-    public Restaurant create(Restaurant restaurant) {
-        var result = restaurantRepository.save(restaurant);
-        return result;
+    public ListRestaurantDTO create(RestaurantDTO restaurant) {
+        Restaurant entity = new Restaurant(restaurant);
+        var result = restaurantRepository.save(entity);
+        return new ListRestaurantDTO(result);
     }
 }
