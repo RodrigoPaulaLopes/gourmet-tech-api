@@ -22,7 +22,9 @@ public class RestaurantService {
         return restaurantRepository.findAll().stream().map(ListRestaurantDTO::new).toList();
     }
 
-
+    public ListRestaurantDTO show(String id){
+        return new ListRestaurantDTO(restaurantRepository.findById(id).get());
+    }
     public ListRestaurantDTO create(RestaurantDTO restaurant) {
         Restaurant entity = new Restaurant(restaurant);
         var result = restaurantRepository.save(entity);

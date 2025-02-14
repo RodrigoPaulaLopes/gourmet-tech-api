@@ -39,6 +39,11 @@ public class RestaurantController {
         return ResponseEntity.ok().body(restaurantService.index());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ListRestaurantDTO> show(@PathVariable String id) {
+        return ResponseEntity.ok().body(restaurantService.show(id));
+    }
+
     @PostMapping()
     public ResponseEntity<ListRestaurantDTO> create(@Valid @RequestBody RestaurantDTO restaurant) {
         var result = restaurantService.create(restaurant);
