@@ -38,4 +38,9 @@ public class RestaurantService {
         restaurantRepository.save(rest);
         return new ListRestaurantDTO(rest);
     }
+
+    public void delete(String id){
+        var restaurant = restaurantRepository.findById(id).get();
+        restaurantRepository.delete(restaurant);    
+    }
 }

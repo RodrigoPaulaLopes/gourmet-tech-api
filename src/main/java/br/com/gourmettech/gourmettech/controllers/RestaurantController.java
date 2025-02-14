@@ -16,6 +16,7 @@ import br.com.gourmettech.gourmettech.entities.Restaurant;
 import br.com.gourmettech.gourmettech.services.RestaurantService;
 import jakarta.validation.Valid;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,6 +55,12 @@ public class RestaurantController {
     public ResponseEntity<ListRestaurantDTO> update(@Valid @RequestBody RestaurantDTO restaurant, @PathVariable String id) {
         var result = restaurantService.update(id, restaurant);
       return ResponseEntity.ok().body(result);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        restaurantService.delete(id);
+        return ResponseEntity.noContent().build();
     }
     
 }
